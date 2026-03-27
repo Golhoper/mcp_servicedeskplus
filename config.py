@@ -3,10 +3,14 @@ Configuration for ServiceDesk Plus MCP Server (On-Premise)
 """
 
 import os
+from pathlib import Path
 from typing import Dict, Any
 from dotenv import load_dotenv
 
-load_dotenv()
+# Search order: current directory → ~/.config/servicedeskplus-mcp/.env
+_config_dir = Path.home() / ".config" / "servicedeskplus-mcp"
+load_dotenv(_config_dir / ".env")
+load_dotenv(override=False)  # current directory, won't override already-set values
 
 
 class Config:
