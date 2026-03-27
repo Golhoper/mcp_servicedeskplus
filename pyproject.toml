@@ -15,7 +15,7 @@ dependencies = [
 servicedeskplus-mcp = "main:run"
 
 [tool.setuptools]
-py-modules = ["main", "sdp_client", "config", "admin_client"]
+py-modules = ["main", "sdp_client", "config"]
 
 [build-system]
 requires = ["setuptools>=61"]
