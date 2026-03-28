@@ -35,10 +35,7 @@ async def handle_list_tools() -> ListToolsResult:
                 "type": "object",
                 "properties": {
                     "limit": {
-                        "type": "number",
-                        "description": "Maximum number of tickets (default: 50, max: 1000)",
-                        "default": 50,
-                    },
+                        "description": "Maximum number of tickets (default: 50, max: 1000)",                    },
                     "status": {
                         "type": "string",
                         "description": "Filter by ticket status",
@@ -81,10 +78,7 @@ async def handle_list_tools() -> ListToolsResult:
                         "description": "Search keyword",
                     },
                     "limit": {
-                        "type": "number",
-                        "description": "Maximum number of results (default: 50, max: 1000)",
-                        "default": 50,
-                    },
+                        "description": "Maximum number of results (default: 50, max: 1000)",                    },
                 },
                 "required": ["query"],
             },
@@ -142,10 +136,7 @@ async def handle_list_tools() -> ListToolsResult:
                         "description": "ID of the request",
                     },
                     "limit": {
-                        "type": "number",
-                        "description": "Maximum number of records (default: 50, max: 1000)",
-                        "default": 50,
-                    },
+                        "description": "Maximum number of records (default: 50, max: 1000)",                    },
                 },
                 "required": ["request_id"],
             },
@@ -187,10 +178,7 @@ async def handle_list_tools() -> ListToolsResult:
                 "type": "object",
                 "properties": {
                     "limit": {
-                        "type": "number",
-                        "description": "Maximum number of users (default: 50, max: 1000)",
-                        "default": 50,
-                    }
+                        "description": "Maximum number of users (default: 50, max: 1000)",                    }
                 },
             },
         ),
@@ -223,7 +211,7 @@ async def handle_call_tool(name: str, arguments: Dict[str, Any]) -> CallToolResu
             # ==================== TICKET MANAGEMENT ====================
 
             if name == "list_tickets":
-                limit = arguments.get("limit", 50)
+                limit = int(arguments.get("limit", 50))
                 status = arguments.get("status")
                 priority = arguments.get("priority")
                 requester = arguments.get("requester")
@@ -240,7 +228,7 @@ async def handle_call_tool(name: str, arguments: Dict[str, Any]) -> CallToolResu
 
             elif name == "search_tickets":
                 query = arguments["query"]
-                limit = arguments.get("limit", 50)
+                limit = int(arguments.get("limit", 50))
                 result = await client.search_tickets(query, limit=limit)
 
             elif name == "get_ticket_comments":
@@ -257,7 +245,7 @@ async def handle_call_tool(name: str, arguments: Dict[str, Any]) -> CallToolResu
 
             elif name == "get_request_worklog":
                 request_id = arguments["request_id"]
-                limit = arguments.get("limit", 50)
+                limit = int(arguments.get("limit", 50))
                 result = await client.get_request_worklog(request_id, limit)
 
             elif name == "get_request_attachments":
@@ -271,7 +259,7 @@ async def handle_call_tool(name: str, arguments: Dict[str, Any]) -> CallToolResu
             # ==================== USER MANAGEMENT ====================
 
             elif name == "list_users":
-                limit = arguments.get("limit", 50)
+                limit = int(arguments.get("limit", 50))
                 result = await client.get_users(limit=limit)
 
             elif name == "get_user":

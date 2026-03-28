@@ -29,7 +29,7 @@ SDP_API_KEY=your_technician_api_key
 
 ### 3. Подключение к Claude Desktop
 
-В `~/Library/Application Support/Claude/claude_desktop_config.json`:
+В `~/Library/Application\ Support/Claude/claude_desktop_config.json`:
 
 ```json
 {
